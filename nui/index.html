@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css">
+    <title>Kreator Postaci</title>
+</head>
+<body style="display: none;">
+    <div class="character-creator">
+        <div class="steps">
+            <div id="step-1" class="step">
+                <div class="number">1</div>
+                <div class="step-text">Informacje</div>
+            </div>
+            <div id="step-2" class="step">
+                <div class="number">2</div>
+                <div class="step-text">Wygląd</div>
+            </div>
+            <div id="step-3" class="step">
+                <div class="number">3</div>
+                <div class="step-text">Ubrania</div>
+            </div>
+        </div>
+        <div class="side-menu-container">
+            <div class="side-menu-left">
+                <div class="content information-content">
+                    <h1>Informacje</h1>
+                    <h2 class="title-of-group">Dane postaci</h2>
+                    <div class="user-details">
+                        <div class="form-group">
+                            <label for="first-name">Imię</label>
+                            <input type="text" id="first-name" name="first-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Nazwisko</label>
+                            <input type="text" id="last-name" name="last-name">
+                        </div>
+                    </div>
+                    <h2 class="title-of-group">Data urodzenia</h2>
+                    <div class="date-of-birthday">
+                        <div class="form-group">
+                            <label for="dob-day">Dzień</label>
+                            <input type="number" id="dob-day" name="dob-day">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob-month">Miesiąc</label>
+                            <input type="number" id="dob-month" name="dob-month">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob-year">Rok</label>
+                            <input type="number" id="dob-year" name="dob-year">
+                        </div>
+                    </div>
+                    <h2 class="title-of-group">Dane metryczne</h2>
+                    <div class="form-group">
+                        <label for="height">Wzrost</label>
+                        <input type="number" id="height" name="height" min="140" max="220" step="1">
+                    </div>
+                    <h2 class="title-of-group">Płeć</h2>
+                    <div class="gender">
+                        <div class="form-group">
+                            <input type="radio" id="male" class="radio-btn" name="sex" value="m">
+                            <label for="male" class="radio-label">Mężczyzna</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="radio" id="female" class="radio-btn" name="sex" value="f">
+                            <label for="female" class="radio-label">Kobieta</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content appearance-content">
+                    <h1>Wygląd postaci</h1>
+                    <h2 class="title-of-group">Twarz</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="dad" class="slider-label">Ojciec</label>
+                            <input type="range" id="dad" class="slider" name="face" min="0" max="50" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="mom" class="slider-label">Matka</label>
+                            <input type="range" id="mom" class="slider" name="face" min="0" max="50" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="face_md_weight" class="slider-label">Podobieństwo</label>
+                            <input type="range" id="face_md_weight" class="slider" name="face" min="0" max="50" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="skin_md_weight" class="slider-label">Kolor skóry</label>
+                            <input type="range" id="skin_md_weight" class="slider" name="face" min="0" max="50" value="25">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Włosy</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="hair_1" class="slider-label">Rodzaj włosów</label>
+                            <p class="slider-value" name="hair_1" >0/60</p>
+                            <input type="range" id="hair_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-squares-label" style="bottom: 5px;">Kolor włosów</label>
+                            <div class="color-squares-container" id="hair_2">
+                                <span id="red" class="square-active" style="background-color: #212121;" value="0"></span> 
+                                <span id="red" style="background-color: #2b2b2b;" value="1"></span>
+                                <span id="red2" style="background-color: #423028;" value="3"></span>
+                                <span id="red" style="background-color: #783a1d;" value="5"></span>
+                                <span id="red" style="background-color: #a37545;" value="8"></span>
+                                <span id="re3d" style="background-color: #c49766;" value="10"></span>
+                                <span id="red" style="background-color: #e6b683;" value="12"></span>
+                                <span id="red" style="background-color: #f3d9be;" value="14"></span>
+                                <span id="re4d" style="background-color: #5e2617;" value="18"></span>
+                                <span id="red" style="background-color: #5e1400;" value="20"></span>
+                                <span id="red" style="background-color: #b82b04;" value="23"></span>
+                                <span id="r4ed" style="background-color: #6b6564;" value="26"></span>
+                                <span id="red" style="background-color: #807977;" value="28"></span>
+                                <span id="r5ed" style="background-color: #b0a9a7;" value="29"></span>
+                                <span id="red" style="background-color: #7d5f94;" value="30"></span>
+                                <span id="r6d" style="background-color: #c452a2;" value="32"></span>
+                                <span id="red" style="background-color: #e307a1;" value="33"></span>
+                                <span id="red" style="background-color: #e30754;" value="34"></span>
+                                <span id="red" style="background-color: #f0739f;" value="35"></span>
+                                <span id="red" style="background-color: #249693;" value="36"></span>
+                                <span id="red" style="background-color: #063c5e;" value="38"></span>
+                                <span id="red" style="background-color: #05783e;" value="39"></span>
+                                <span id="red" style="background-color: #0f3629;" value="41"></span>
+                                <span id="red" style="background-color: #199c1f;" value="42"></span>    
+                                <span id="red" style="background-color: #e6cd12;" value="46"></span>
+                                <span id="red" style="background-color: #9e0000;" value="53"></span>
+                                <span id="red" style="background-color: #540000;" value="54"></span>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Brwi</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="eyebrows_1" class="slider-label">Styl brwi</label>
+                            <p class="slider-value" name="eyebrows_1" >0/60</p>
+                            <input type="range" id="eyebrows_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="eyebrows_2" class="slider-label">Widoczność brwi</label>
+                            <p class="slider-value" name="eyebrows_2" >0/60</p>
+                            <input type="range" id="eyebrows_2" class="slider" name="face" min="0" max="50" value="5" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-squares-label" style="bottom: 5px;">Kolor brwi</label>
+                            <div class="color-squares-container" id="eyebrows_3">
+                                <span id="red" style="background-color: #212121;" value="0"></span> 
+                                <span id="red" style="background-color: #2b2b2b;" value="1"></span>
+                                <span id="red" style="background-color: #423028;" value="3"></span>
+                                <span id="red" style="background-color: #783a1d;" value="5"></span>
+                                <span id="red" style="background-color: #a37545;" value="8"></span>
+                                <span id="red" style="background-color: #c49766;" value="10"></span>
+                                <span id="red" style="background-color: #e6b683;" value="12"></span>
+                                <span id="red" style="background-color: #f3d9be;" value="14"></span>
+                                <span id="red" style="background-color: #5e2617;" value="18"></span>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Broda</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="beard_1" class="slider-label">Styl brody</label>
+                            <p class="slider-value" name="beard_1" >0/60</p>
+                            <input type="range" id="beard_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="beard_2" class="slider-label">Gęstość brody</label>
+                            <p class="slider-value" name="beard_2" >0/60</p>
+                            <input type="range" id="beard_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-squares-label" style="bottom: 5px;">Kolor brody</label>
+                            <div class="color-squares-container" id="beard_3">
+                                <span id="red" style="background-color: #212121;" value="0"></span> 
+                                <span id="red" style="background-color: #2b2b2b;" value="1"></span>
+                                <span id="red" style="background-color: #423028;" value="3"></span>
+                                <span id="red" style="background-color: #783a1d;" value="5"></span>
+                                <span id="red" style="background-color: #a37545;" value="8"></span>
+                                <span id="red" style="background-color: #c49766;" value="10"></span>
+                                <span id="red" style="background-color: #e6b683;" value="12"></span>
+                                <span id="red" style="background-color: #f3d9be;" value="14"></span>
+                                <span id="red" style="background-color: #5e2617;" value="18"></span>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Oczy</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="eye_squint" class="slider-label">Zmrużenie oczu</label>
+                            <p class="slider-value" name="eye_squint" >0/60</p>
+                            <input type="range" id="eye_squint" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-squares-label" style="bottom: 5px;">Kolor oczu</label>
+                            <div class="color-squares-container" id="eye_color">
+                                <span id="red" style="background-color: #81bf77;" value="0"></span> 
+                                <span id="red" style="background-color: #32522d;" value="1"></span>
+                                <span id="red" style="background-color: #90cfd6;" value="2"></span>
+                                <span id="red" style="background-color: #1d627d;" value="3"></span>
+                                <span id="red" style="background-color: #6e4d44;" value="4"></span>
+                                <span id="red" style="background-color: #382722;" value="5"></span>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Skazy</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="bodyb_1" class="slider-label">Rodzaj skazy</label>
+                            <p class="slider-value" name="bodyb_1" >0/60</p>
+                            <input type="range" id="bodyb_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="bodyb_2" class="slider-label">Wielkość skazy</label>
+                            <p class="slider-value" name="bodyb_2" >0/60</p>
+                            <input type="range" id="bodyb_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content clothes-content">
+                    <h1>Ubrania</h1>
+                    <h2 class="title-of-group">Nakrycie głowy</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="helmet_1" class="slider-label">Typ odzieży</label>
+                            <p class="slider-value" name="helmet_1" >0/60</p>
+                            <input type="range" id="helmet_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="helmet_2" class="slider-label">Wariant odzieży</label>
+                            <p class="slider-value" name="helmet_2" >0/60</p>
+                            <input type="range" id="helmet_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Koszulka</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="tshirt_1" class="slider-label">Typ odzieży</label>
+                            <p class="slider-value" name="tshirt_1" >0/60</p>
+                            <input type="range" id="tshirt_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="tshirt_2" class="slider-label">Wariant odzieży</label>
+                            <p class="slider-value" name="tshirt_2" >0/60</p>
+                            <input type="range" id="tshirt_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Tułów</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="torso_1" class="slider-label">Typ odzieży</label>
+                            <p class="slider-value" name="torso_1" >0/60</p>
+                            <input type="range" id="torso_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="torso_2" class="slider-label">Wariant odzieży</label>
+                            <p class="slider-value" name="torso_2" >0/60</p>
+                            <input type="range" id="torso_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Ramiona</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="arms" class="slider-label">Typ ramion</label>
+                            <p class="slider-value" name="arms" >0/60</p>
+                            <input type="range" id="arms" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="arms_2" class="slider-label">Wariant ramion</label>
+                            <p class="slider-value" name="arms_2" >0/60</p>
+                            <input type="range" id="arms_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+
+                   
+                    <h2 class="title-of-group">Spodnie</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="pants_1" class="slider-label">Typ odzieży</label>
+                            <p class="slider-value" name="pants_1" >0/60</p>
+                            <input type="range" id="pants_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="pants_2" class="slider-label">Wariant odzieży</label>
+                            <p class="slider-value" name="pants_2" id="pants_2_val" >0/60</p>
+                            <input type="range" id="pants_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Buty</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="shoes_1" class="slider-label">Typ odzieży</label>
+                            <p class="slider-value" name="shoes_1" id="shoes_1_val">0/60</p>
+                            <input type="range" id="shoes_1" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoes_2" class="slider-label">Wariant odzieży</label>
+                            <p class="slider-value" name="shoes_2" id="shoes_2_val">0/60</p>
+                            <input type="range" id="shoes_2" class="slider" name="face" min="0" max="50" value="0" oninput="changeValue(this)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button id="previous"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="next"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button id="submit">Stwórz postać</button>
+                </div>
+            </div>
+
+            <div class="side-menu-right">
+                <div class="content appearance-content-right">
+                    <h1>Personalizacja twarzy</h1>
+
+                    <h2 class="title-of-group">Nos</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="nose_1" class="slider-label">Szerokość nosa</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="nose_1" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="nose_3" class="slider-label">Wysokość czubka nosa</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="nose_3" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="nose_4" class="slider-label">Wysokość kości nosa</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="nose_4" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="nose_5" class="slider-label">Obniżenie szczytu nosa</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="nose_5" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="nose_6" class="slider-label">Skręcenie kości nosa</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="nose_6" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Policzki</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="cheeks_1" class="slider-label">Wysokość kości policzkowych</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="cheeks_1" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="cheeks_2" class="slider-label">Szerokość kości policzkowych</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="cheeks_2" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="cheeks_3" class="slider-label">Szerokość policzków</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="cheeks_3" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Szczęka</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="jaw_1" class="slider-label">Szerokość kości szczęki</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="jaw_1" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="jaw_2" class="slider-label">Długość kości szczęki</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="jaw_2" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Podbródek</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="chin_1" class="slider-label">Wysokość podbródka</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="chin_1" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="chin_2" class="slider-label">Długość podbródka</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="chin_2" class="slider" name="face" min="0" max="330" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="chin_3" class="slider-label">Szerokość podbródka</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="chin_3" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="chin_4" class="slider-label">Dziura w podbródku</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="chin_4" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Usta</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="lip_thickness" class="slider-label">Wypełnienie ust</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="lip_thickness" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                    </div>
+
+                    <h2 class="title-of-group">Szyja</h2>
+                    <div class="nose-details slider-select">
+                        <div class="form-group">
+                            <label for="neck_thickness" class="slider-label">Grubość szyi</label>
+                            <p class="slider-value" style="font-size: 20px;">- +</p>
+                            <input type="range" id="neck_thickness" class="slider" name="face" min="0" max="50" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="left-background"></div>
+    <div class="right-background"></div>
+    <script>
+        function changeValue(el) {
+            const sliderVal = document.querySelector(`p[name="${el.id}"]`)
+            if (sliderVal != null){
+                sliderVal.innerText = `${el.value}/${el.max}`;
+            }
+        }
+     </script>
+    <script src="script.js"></script>
+</body>
+</html>
